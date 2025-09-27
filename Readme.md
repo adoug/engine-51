@@ -57,9 +57,6 @@ DFSEXPorter -x --external-tex RESOURCE.DFS
 # Export specific file by name (case-insensitive)
 DFSEXPorter -e "NPC_BRIDGES_01_LEVELBLUE_SL0-1" RESOURCE.DFS
 
-# Export file with extension
-DFSEXPorter -e "NPC_BRIDGES_01_LEVELBLUE_SL0-1.RIGIDGEOM" RESOURCE.DFS
-
 # Export single file (no directory option for single file export)
 DFSEXPorter -e "texture_name" RESOURCE.DFS
 

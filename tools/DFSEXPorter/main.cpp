@@ -19,6 +19,8 @@
 #include "../../a51lib/dataUtil/Bitstream.h"
 #include "../../a51lib/gltf/json.hpp"
 
+#include "../../a51lib/gltf/stb_image_write.h"
+
 using nlohmann::json;
 
 std::string getPropStringVal(PropertyType type, Bitstream& bs);
@@ -153,13 +155,14 @@ void exportFile(DFSFile& dfs, int entryNo, const std::string& exportDir, bool em
         Bitmap bitmap;
         const bool oldVersion = dfs.getVersion() == 1;
         bitmap.readFile(fileData, fileLen, oldVersion);
-        bitmap.convertFormat(Bitmap::FMT_32_ARGB_8888);
 
-        // Save bitmap data as raw RGBA for now (PNG export would need image library)
-        std::ofstream outFile(fileName, std::ios::binary);
-        if (outFile.is_open()) {
-            outFile.write((const char*)bitmap.data.pixelData, bitmap.width * bitmap.height * 4);
-            std::cout << "Exported bitmap: " << fileName << " (" << bitmap.width << "x" << bitmap.height << ")" << std::endl;
+        bitmap.convertFormat(Bitmap::FMT_24_RGB_888);
+
+        if (stbi_write_png(fileName.c_str(), bitmap.getWidth(), bitmap.getHeight(), 3,
+                          bitmap.data.pixelData, bitmap.getWidth() * 3)) {
+            std::cout << "Exported PNG texture: " << fileName << " (" << bitmap.getWidth() << "x" << bitmap.getHeight() << ")" << std::endl;
+        } else {
+            std::cerr << "Failed to export PNG texture: " << fileName << std::endl;
         }
     } else if (extension == ".RIGIDGEOM") {
         std::string fileName = (exportPath / (origFilename + ".gltf")).string();
@@ -223,7 +226,6 @@ void exportFile(DFSFile& dfs, int entryNo, const std::string& exportDir, bool em
             std::cerr << "Warning: Could not find dictionary file for " << origFilename << ".TMPL_DCT" << std::endl;
         }
     } else {
-        // For other files, just extract raw data
         std::string fileName = (exportPath / (origFilename + extension)).string();
         uint8_t* fileData = dfs.getFileData(entryNo);
         int fileLen = dfs.getFileSize(entryNo);
@@ -253,7 +255,6 @@ int main(int argc, char *argv[])
     std::string exportFileType;
     std::string dfsFile;
 
-    // Parse command line arguments
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
         if (arg == "-l") {
@@ -276,10 +277,8 @@ int main(int argc, char *argv[])
             exportByTypeMode = true;
             if (i + 1 < argc && argv[i + 1][0] != '-') {
                 exportFileType = argv[++i];
-                // Convert to uppercase for consistency
                 std::transform(exportFileType.begin(), exportFileType.end(), exportFileType.begin(), ::toupper);
 
-                // Check if next argument is a directory (optional)
                 if (i + 1 < argc && argv[i + 1][0] != '-') {
                     exportDir = argv[++i];
                 }
@@ -308,7 +307,6 @@ int main(int argc, char *argv[])
     
     std::cout << "Opening DFS file: " << dfsFile << std::endl;
 
-    // Create DFSFile instance and read the archive
     DFSFile dfs(0);
     bool headerOnly = !(exportMode || exportSingleMode || exportByTypeMode); // Read full data if exporting
     if (!dfs.read(dfsFile, headerOnly)) {
@@ -319,7 +317,6 @@ int main(int argc, char *argv[])
     int fileCount = dfs.numFiles();
 
     if (listMode) {
-        // List mode: just show file list
         std::cout << "\n=== Files in Archive ===" << std::endl;
         std::cout << "Total files: " << fileCount << std::endl;
         std::cout << std::endl;
@@ -345,7 +342,6 @@ int main(int argc, char *argv[])
             std::cout << "No files found in the archive." << std::endl;
         }
     } else if (exportMode) {
-        // Export mode: export all files
         std::cout << "\n=== Exporting All Files ===" << std::endl;
         if (!exportDir.empty()) {
             std::cout << "Export directory: " << exportDir << std::endl;
@@ -362,14 +358,12 @@ int main(int argc, char *argv[])
 
         std::cout << "\nExport completed!" << std::endl;
     } else if (exportSingleMode) {
-        // Export single file mode
         std::cout << "\n=== Exporting Single File ===" << std::endl;
         std::cout << "Looking for file: " << exportFileName << std::endl;
 
         int targetEntryNo = -1;
         std::string searchName = exportFileName;
 
-        // Convert search name to lowercase for case-insensitive comparison
         std::transform(searchName.begin(), searchName.end(), searchName.begin(), ::tolower);
 
         for (int i = 0; i < fileCount; ++i) {
@@ -377,13 +371,11 @@ int main(int argc, char *argv[])
             std::string extension = dfs.getFileExtension(i);
             std::string fullName = baseName + extension;
 
-            // Convert to lowercase for comparison
             std::string lowerBaseName = baseName;
             std::string lowerFullName = fullName;
             std::transform(lowerBaseName.begin(), lowerBaseName.end(), lowerBaseName.begin(), ::tolower);
             std::transform(lowerFullName.begin(), lowerFullName.end(), lowerFullName.begin(), ::tolower);
 
-            // Match either base name or full name (with extension)
             if (lowerBaseName == searchName || lowerFullName == searchName) {
                 targetEntryNo = i;
                 break;
@@ -403,7 +395,6 @@ int main(int argc, char *argv[])
             return 1;
         }
     } else if (exportByTypeMode) {
-        // Export by type mode
         std::cout << "\n=== Exporting Files by Type ===" << std::endl;
         std::cout << "File type: " << exportFileType << std::endl;
         if (!exportDir.empty()) {
@@ -412,12 +403,10 @@ int main(int argc, char *argv[])
             std::cout << "Export directory: current directory" << std::endl;
         }
 
-        // Find all files of the specified type
         std::vector<int> matchingFiles;
         for (int i = 0; i < fileCount; ++i) {
             std::string extension = dfs.getFileExtension(i);
 
-            // Remove the leading dot and convert to uppercase for comparison
             std::string fileType = extension;
             if (!fileType.empty() && fileType[0] == '.') {
                 fileType = fileType.substr(1);
@@ -433,7 +422,6 @@ int main(int argc, char *argv[])
             std::cerr << "Error: No files found with type '" << exportFileType << "'" << std::endl;
             std::cout << "\nAvailable file types:" << std::endl;
 
-            // Collect and display available types
             std::set<std::string> availableTypes;
             for (int i = 0; i < fileCount; ++i) {
                 std::string extension = dfs.getFileExtension(i);
@@ -461,7 +449,6 @@ int main(int argc, char *argv[])
 
         std::cout << "\nExport completed! Exported " << matchingFiles.size() << " files." << std::endl;
     } else {
-        // Default mode: show header and file list
         std::cout << "\n=== DFS Archive Information ===" << std::endl;
         dfs.logHeader();
 
