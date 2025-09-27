@@ -198,7 +198,7 @@ void exportGLTF(RigidGeom& rigidGeom, const std::string& fileName, DFSFile* dfsF
     // Define the asset
     tinygltf::Asset asset;
     asset.version = "2.0";
-    asset.generator = "DFSViewer";
+    asset.generator = "DFSEXPorter";
     m.asset = asset;
 
     // Save to file

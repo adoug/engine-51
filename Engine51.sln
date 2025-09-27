@@ -4,7 +4,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "a51lib", "a51lib\a51lib.vcxproj", "{53CECB1B-85F9-41FF-A189-4DAE11770B66}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DFSViewer", "tools\DFSViewer\DFSViewer.vcxproj", "{E0EE8C3A-15B7-4AD0-BF8B-4F3C9E4452CD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DFSEXPorter", "tools\DFSEXPorter\DFSEXPorter.vcxproj", "{E0EE8C3A-15B7-4AD0-BF8B-4F3C9E4452CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

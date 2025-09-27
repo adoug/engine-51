@@ -6,7 +6,7 @@ Console-based export tool for DFS files.
 ## Project Structure
 
 - **a51lib**: Core engine library (static library)
-- **tools/DFSViewer**: Console application for exporting DFS files to GLTF format
+- **tools/DFSEXPorter**: Console application for exporting DFS files to GLTF format
 
 ## Building
 
@@ -14,10 +14,10 @@ Open `Engine51.sln` in Visual Studio 2022 and build the solution.
 
 ## Usage
 
-The DFSViewer is a console application that currently prints the contents of DFS archives:
+The DFSEXPorter is a console application that currently prints the contents of DFS archives:
 
 ```
-DFSViewer <dfs_file>
+DFSEXPorter <dfs_file>
 ```
 
 **Note**: Currently, the tool only displays the contents of the DFS archive. Export functionality is coming.
@@ -29,5 +29,5 @@ DFSViewer <dfs_file>
 
 # Tools
 
-## DFSViewer
+## DFSEXPorter
 Console-based tool for exporting DFS files to GLTF format.

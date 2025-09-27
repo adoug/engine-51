@@ -6,12 +6,12 @@
 
 int main(int argc, char *argv[])
 {
-    std::cout << "DFS Viewer - Console Export Tool" << std::endl;
-    std::cout << "Usage: DFSViewer <dfs_file>" << std::endl;
+    std::cout << "DFS Exporter - Console Export Tool" << std::endl;
+    std::cout << "Usage: DFSEXPorter <dfs_file>" << std::endl;
     
     if (argc != 2) {
         std::cerr << "Error: Please provide a DFS file path" << std::endl;
-        std::cerr << "Usage: DFSViewer <dfs_file>" << std::endl;
+        std::cerr << "Usage: DFSEXPorter <dfs_file>" << std::endl;
         return 1;
     }
     
