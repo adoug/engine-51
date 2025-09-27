@@ -90,11 +90,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="gltfExporter.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="exporters\gltfExporter.cpp" />
+    <ClCompile Include="core\ExportManager.cpp" />
+    <ClCompile Include="core\ExporterFactory.cpp" />
+    <ClCompile Include="core\DFSExporterApplication.cpp" />
+    <ClCompile Include="commands\ListCommandHandler.cpp" />
+    <ClCompile Include="commands\ExportAllCommandHandler.cpp" />
+    <ClCompile Include="commands\ExportByTypeCommandHandler.cpp" />
+    <ClCompile Include="exporters\BaseFileExporter.cpp" />
+    <ClCompile Include="exporters\XBMPExporter.cpp" />
+    <ClCompile Include="exporters\GenericFileExporter.cpp" />
+    <ClCompile Include="exporters\RigidGeomExporter.cpp" />
+    <ClCompile Include="exporters\SkinGeomExporter.cpp" />
+    <ClCompile Include="exporters\PlaySurfaceExporter.cpp" />
+    <ClCompile Include="utilities\ExportUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gltfExporter.h" />
+    <ClInclude Include="exporters\gltfExporter.h" />
+    <ClInclude Include="interfaces\IFileExporter.h" />
+    <ClInclude Include="interfaces\ICommandHandler.h" />
+    <ClInclude Include="interfaces\IExportContext.h" />
+    <ClInclude Include="interfaces\ExportContext.h" />
+    <ClInclude Include="core\ExportManager.h" />
+    <ClInclude Include="core\ExporterFactory.h" />
+    <ClInclude Include="core\DFSExporterApplication.h" />
+    <ClInclude Include="commands\ListCommandHandler.h" />
+    <ClInclude Include="commands\ExportAllCommandHandler.h" />
+    <ClInclude Include="commands\ExportByTypeCommandHandler.h" />
+    <ClInclude Include="exporters\BaseFileExporter.h" />
+    <ClInclude Include="exporters\XBMPExporter.h" />
+    <ClInclude Include="exporters\GenericFileExporter.h" />
+    <ClInclude Include="exporters\RigidGeomExporter.h" />
+    <ClInclude Include="exporters\SkinGeomExporter.h" />
+    <ClInclude Include="exporters\PlaySurfaceExporter.h" />
+    <ClInclude Include="utilities\ExportUtilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\a51lib\a51lib.vcxproj">

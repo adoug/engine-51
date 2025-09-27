@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <!-- Define the folder filters -->
+    <Filter Include="interfaces">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exporters">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="commands">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities">
+      <UniqueIdentifier>{f8C6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <!-- Assign source files to filters -->
+  <ItemGroup>
+    <!-- Main application -->
+    <ClCompile Include="main.cpp" />
+    <!-- Legacy files -->
+    <!-- Core files -->
+    <ClCompile Include="core\ExporterFactory.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <!-- Exporter files -->
+    <ClCompile Include="exporters\BaseFileExporter.cpp">
+      <Filter>exporters</Filter>
+    </ClCompile>
+    <ClCompile Include="exporters\XBMPExporter.cpp">
+      <Filter>exporters</Filter>
+    </ClCompile>
+    <ClCompile Include="exporters\GenericFileExporter.cpp">
+      <Filter>exporters</Filter>
+    </ClCompile>
+    <!-- Utility files -->
+    <ClCompile Include="utilities\ExportUtilities.cpp">
+      <Filter>utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="core\DFSExporterApplication.cpp" />
+    <ClCompile Include="core\ExportManager.cpp" />
+    <ClCompile Include="exporters\SkinGeomExporter.cpp">
+      <Filter>exporters</Filter>
+    </ClCompile>
+    <ClCompile Include="exporters\RigidGeomExporter.cpp">
+      <Filter>exporters</Filter>
+    </ClCompile>
+    <ClCompile Include="exporters\PlaySurfaceExporter.cpp">
+      <Filter>exporters</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\ExportAllCommandHandler.cpp">
+      <Filter>commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\ExportByTypeCommandHandler.cpp">
+      <Filter>commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\ListCommandHandler.cpp">
+      <Filter>commands</Filter>
+    </ClCompile>
+    <ClCompile Include="exporters\gltfExporter.cpp">
+      <Filter>exporters</Filter>
+    </ClCompile>
+    <ClCompile Include="core\ExportManager.cpp">
+      <Filter>exporters</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <!-- Assign header files to filters -->
+  <ItemGroup>
+    <!-- Legacy files -->
+    <!-- Interface files -->
+    <ClInclude Include="interfaces\IFileExporter.h">
+      <Filter>interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="interfaces\ICommandHandler.h">
+      <Filter>interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="interfaces\IExportContext.h">
+      <Filter>interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="interfaces\ExportContext.h">
+      <Filter>interfaces</Filter>
+    </ClInclude>
+    <!-- Core files -->
+    <ClInclude Include="core\ExporterFactory.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <!-- Exporter files -->
+    <ClInclude Include="exporters\BaseFileExporter.h">
+      <Filter>exporters</Filter>
+    </ClInclude>
+    <ClInclude Include="exporters\XBMPExporter.h">
+      <Filter>exporters</Filter>
+    </ClInclude>
+    <ClInclude Include="exporters\GenericFileExporter.h">
+      <Filter>exporters</Filter>
+    </ClInclude>
+    <!-- Utility files -->
+    <ClInclude Include="utilities\ExportUtilities.h">
+      <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="core\DFSExporterApplication.h" />
+    <ClInclude Include="core\ExportManager.h" />
+    <ClInclude Include="exporters\SkinGeomExporter.h">
+      <Filter>exporters</Filter>
+    </ClInclude>
+    <ClInclude Include="exporters\RigidGeomExporter.h">
+      <Filter>exporters</Filter>
+    </ClInclude>
+    <ClInclude Include="exporters\PlaySurfaceExporter.h">
+      <Filter>exporters</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\ExportAllCommandHandler.h">
+      <Filter>commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\ExportByTypeCommandHandler.h">
+      <Filter>commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\ListCommandHandler.h">
+      <Filter>commands</Filter>
+    </ClInclude>
+    <ClInclude Include="exporters\gltfExporter.h">
+      <Filter>exporters</Filter>
+    </ClInclude>
+    <ClInclude Include="core\ExportManager.h">
+      <Filter>exporters</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <!-- Documentation files -->
+</Project>
