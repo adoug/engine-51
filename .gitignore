@@ -1,6 +1,9 @@
 .DS_Store
 .vs
 build*
+build/
+bin/
+/lib*
 *.txt.user
 *.qsb
 /vcpkg_installed
