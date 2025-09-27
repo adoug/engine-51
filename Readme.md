@@ -14,18 +14,20 @@ Open `Engine51.sln` in Visual Studio 2022 and build the solution.
 
 ## Usage
 
-The DFSViewer is a console application that exports DFS files to GLTF format:
+The DFSViewer is a console application that currently prints the contents of DFS archives:
 
 ```
-DFSViewer <input_file> <output_file>
+DFSViewer <dfs_file>
 ```
+
+**Note**: Currently, the tool only displays the contents of the DFS archive. Export functionality is coming.
 
 ## Dependencies
 
 - Visual Studio 2022 with C++20 support
-- No external dependencies (removed Qt, SDL3, Vulkan)
+- No external dependencies
 
 # Tools
 
 ## DFSViewer
-Console-based tool for exporting DFS files to GLTF format. No GUI - command line only.
+Console-based tool for exporting DFS files to GLTF format.
