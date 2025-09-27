@@ -17,7 +17,7 @@ token_stream::token_stream()
     m_CurBufferStart = -1;
     m_CurBufferEnd = -1;
 
-    strcpy(m_DelimiterStr, TOKEN_DELIMITER_STR);
+    strcpy_s(m_DelimiterStr, sizeof(m_DelimiterStr), TOKEN_DELIMITER_STR);
 
     // Setup number chars
     int  i;
@@ -70,7 +70,7 @@ char* token_stream::GetDelimeter()
 void token_stream::SetDelimeter(const char* pStr)
 {
     assert(strlen(pStr) >= 2);
-    strcpy(m_DelimiterStr, pStr);
+    strcpy_s(m_DelimiterStr, sizeof(m_DelimiterStr), pStr);
 }
 
 //==============================================================================
@@ -634,7 +634,7 @@ void token_stream::OpenText(const char* pTextString)
     m_LineNumber = 1;
     m_Type = TOKEN_NONE;
 
-    strcpy(m_Filename, "<internal string>");
+    strcpy_s(m_Filename, sizeof(m_Filename), "<internal string>");
 
     m_bBuffered = false;
     m_FileBuffer = (char*)pTextString;

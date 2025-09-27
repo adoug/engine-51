@@ -116,7 +116,7 @@ bool text_in::ReadAllFields()
         }
 
         // Read the name of the field
-        strncpy(Field.Name, m_Tokenizer.String(), TEXTFILE_MAX_STRLENGTH - 1);
+        strncpy_s(Field.Name, sizeof(Field.Name), m_Tokenizer.String(), TEXTFILE_MAX_STRLENGTH - 1);
 
         //
         // Now we must find a delimeter
@@ -229,7 +229,7 @@ bool text_in::ReadHeader()
         return ReportError("Expecting a string found something else");
     }
 
-    strcpy(m_Record.Name, m_Tokenizer.String());
+    strcpy_s(m_Record.Name, sizeof(m_Record.Name), m_Tokenizer.String());
 
     //
     // Now if must be fallow by a delimeter
@@ -330,7 +330,7 @@ bool text_in::ReadFields()
                     return ReportError("Expecting a STRING but found something else");
                 }
 
-                strcpy(Data.String[Data.nStrings++], m_Tokenizer.String());
+                strcpy_s(Data.String[Data.nStrings++], sizeof(Data.String[0]), m_Tokenizer.String());
 
                 break;
             }
@@ -342,14 +342,16 @@ bool text_in::ReadFields()
                     return ReportError("Expecting a GUID but found something else");
                 }
 
-                guid GUID;
+                guid guidValue;
 
                 //
                 // Take from guid.cpp
                 //
-                /* TODO
+                // Initialize guidValue to avoid uninitialized variable warning
+                guidValue = 0;
+                
+                /* TODO: Parse GUID string
                 {
-                    GUID.Guid = 0;
                     const char* pGUID = m_Tokenizer.String();
 
                     while (*pGUID) {
@@ -366,12 +368,12 @@ bool text_in::ReadFields()
                             v = (c - '0');
                         }
 
-                        GUID.Guid <<= 4;
-                        GUID.Guid |= (v & 0xF);
+                        guidValue <<= 4;
+                        guidValue |= (v & 0xF);
                     }
                 }*/
 
-                Data.Guid[Data.nGuids++] = GUID;
+                Data.Guid[Data.nGuids++] = guidValue;
 
                 break;
             }
@@ -394,7 +396,7 @@ bool text_in::ReadFields()
 int text_in::Stricmp(const char* pStr1, const char* pStr2, int Count)
 {
     char Buf[256];
-    strncpy(Buf, pStr2, Count);
+    strncpy_s(Buf, sizeof(Buf), pStr2, Count);
     Buf[Count] = 0;
     // TODO return x_stricmp(pStr1, Buf);
     return strcmp(pStr1, Buf);
@@ -547,7 +549,7 @@ bool text_in::GetField(const char* pFieldName, ...)
             {
                 char* p = (va_arg(Args, char*));
                 assert(p);
-                strcpy(p, Data.String[S++]);
+                strcpy_s(p, strlen(Data.String[S]) + 1, Data.String[S++]);
                 break;
             }
             case TYPE_GUID:

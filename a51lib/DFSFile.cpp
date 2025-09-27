@@ -257,8 +257,8 @@ std::string DFSFile::getFileExtension(int entryNo) const
 static uint8_t* readFile(std::string path, size_t& size)
 {
     uint8_t* data = nullptr;
-    FILE* file = fopen(path.c_str(), "rb");
-    if (file != nullptr) {
+    FILE* file = nullptr;
+    if (fopen_s(&file, path.c_str(), "rb") == 0 && file != nullptr) {
         fseek(file, 0, SEEK_END);
         size = ftell(file);
         rewind(file);

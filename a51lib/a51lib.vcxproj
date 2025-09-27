@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{53CECB1B-85F9-41FF-A189-4DAE11770B66}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>a51lib</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\a51lib\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\a51lib\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="BinLevel.cpp" />
+    <ClCompile Include="Bitmap.cpp" />
+    <ClCompile Include="CollisionVolume.cpp" />
+    <ClCompile Include="DFSFile.cpp" />
+    <ClCompile Include="Geom.cpp" />
+    <ClCompile Include="InevFile.cpp" />
+    <ClCompile Include="LevelTemplate.cpp" />
+    <ClCompile Include="Playsurface.cpp" />
+    <ClCompile Include="PlaysurfaceDB.cpp" />
+    <ClCompile Include="Property.cpp" />
+    <ClCompile Include="RigidGeom.cpp" />
+    <ClCompile Include="SkinGeom.cpp" />
+    <ClCompile Include="streamingOperators.cpp" />
+    <ClCompile Include="animation\animData.cpp" />
+    <ClCompile Include="animation\animDecompress.cpp" />
+    <ClCompile Include="dataUtil\Bitstream.cpp" />
+    <ClCompile Include="dataUtil\Crc.cpp" />
+    <ClCompile Include="dataUtil\TextIn.cpp" />
+    <ClCompile Include="dataUtil\Tokenizer.cpp" />
+    <ClCompile Include="io\FileSystem.cpp" />
+    <ClCompile Include="levels\LevelLoader.cpp" />
+    <ClCompile Include="levels\navigation\NavMap.cpp" />
+    <ClCompile Include="objectManager\ObjectManager.cpp" />
+    <ClCompile Include="resourceManager\ResourceLoaders.cpp" />
+    <ClCompile Include="resourceManager\ResourceManager.cpp" />
+    <ClCompile Include="state\MapList.cpp" />
+    <ClCompile Include="state\PlayerProfile.cpp" />
+    <ClCompile Include="state\StateMachine.cpp" />
+    <ClCompile Include="strings\StringTable.cpp" />
+    <ClCompile Include="ui\UIBitmap.cpp" />
+    <ClCompile Include="ui\UIButton.cpp" />
+    <ClCompile Include="ui\UIControl.cpp" />
+    <ClCompile Include="ui\UIDialog.cpp" />
+    <ClCompile Include="ui\UIFont.cpp" />
+    <ClCompile Include="ui\UIListBox.cpp" />
+    <ClCompile Include="ui\UIManager.cpp" />
+    <ClCompile Include="ui\UIText.cpp" />
+    <ClCompile Include="ui\UIWindow.cpp" />
+    <ClCompile Include="ui\dialogs\campaignMenuDialog.cpp" />
+    <ClCompile Include="ui\dialogs\esrbDialog.cpp" />
+    <ClCompile Include="ui\dialogs\loadGameDialog.cpp" />
+    <ClCompile Include="ui\dialogs\mainMenuDialog.cpp" />
+    <ClCompile Include="ui\dialogs\PressStartDialog.cpp" />
+    <ClCompile Include="ui\dialogs\profileSelectDialog.cpp" />
+    <ClCompile Include="ui\dialogs\startGameDialog.cpp" />
+    <ClCompile Include="gltf\tiny_gltf.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BinLevel.h" />
+    <ClInclude Include="Bitmap.h" />
+    <ClInclude Include="CollisionVolume.h" />
+    <ClInclude Include="DFSFile.h" />
+    <ClInclude Include="Geom.h" />
+    <ClInclude Include="Guid.h" />
+    <ClInclude Include="InevFile.h" />
+    <ClInclude Include="LevelTemplate.h" />
+    <ClInclude Include="Playsurface.h" />
+    <ClInclude Include="PlaysurfaceDB.h" />
+    <ClInclude Include="Property.h" />
+    <ClInclude Include="PropertyDefs.h" />
+    <ClInclude Include="RigidGeom.h" />
+    <ClInclude Include="SkinGeom.h" />
+    <ClInclude Include="streamingOperators.h" />
+    <ClInclude Include="VectorMath.h" />
+    <ClInclude Include="Colour.h" />
+    <ClInclude Include="DataReader.h" />
+    <ClInclude Include="animation\animData.h" />
+    <ClInclude Include="dataUtil\Bitstream.h" />
+    <ClInclude Include="dataUtil\Crc.h" />
+    <ClInclude Include="dataUtil\TextIn.h" />
+    <ClInclude Include="dataUtil\Tokenizer.h" />
+    <ClInclude Include="io\FileSystem.h" />
+    <ClInclude Include="levels\Level.h" />
+    <ClInclude Include="levels\LevelLoader.h" />
+    <ClInclude Include="levels\VariableManager.h" />
+    <ClInclude Include="levels\navigation\NavMap.h" />
+    <ClInclude Include="objectManager\ObjectManager.h" />
+    <ClInclude Include="resourceManager\ResourceLoaders.h" />
+    <ClInclude Include="resourceManager\ResourceManager.h" />
+    <ClInclude Include="state\CheckPointMgr.h" />
+    <ClInclude Include="state\GameConfig.h" />
+    <ClInclude Include="state\Inventory.h" />
+    <ClInclude Include="state\LoreList.h" />
+    <ClInclude Include="state\MapList.h" />
+    <ClInclude Include="state\PlayerProfile.h" />
+    <ClInclude Include="state\StateMachine.h" />
+    <ClInclude Include="strings\StringTable.h" />
+    <ClInclude Include="system\Engine.h" />
+    <ClInclude Include="system\InputGadget.h" />
+    <ClInclude Include="system\Renderer.h" />
+    <ClInclude Include="ui\UIBitmap.h" />
+    <ClInclude Include="ui\UIButton.h" />
+    <ClInclude Include="ui\UIControl.h" />
+    <ClInclude Include="ui\UIDialog.h" />
+    <ClInclude Include="ui\UIFont.h" />
+    <ClInclude Include="ui\UIListBox.h" />
+    <ClInclude Include="ui\UIManager.h" />
+    <ClInclude Include="ui\UIText.h" />
+    <ClInclude Include="ui\UIWindow.h" />
+    <ClInclude Include="ui\dialogs\campaignMenuDialog.h" />
+    <ClInclude Include="ui\dialogs\esrbDialog.h" />
+    <ClInclude Include="ui\dialogs\loadGameDialog.h" />
+    <ClInclude Include="ui\dialogs\mainMenuDialog.h" />
+    <ClInclude Include="ui\dialogs\pressStartDialog.h" />
+    <ClInclude Include="ui\dialogs\profileSelectDialog.h" />
+    <ClInclude Include="ui\dialogs\startGameDialog.h" />
+    <ClInclude Include="gltf\json.hpp" />
+    <ClInclude Include="gltf\tiny_gltf.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

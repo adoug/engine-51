@@ -60,7 +60,9 @@ void PlayerProfile::SetHash()
 
     time_t rawtime;
     time(&rawtime);
-    TempString += ctime(&rawtime);
+    char timeBuffer[26];
+    ctime_s(timeBuffer, sizeof(timeBuffer), &rawtime);
+    TempString += timeBuffer;
 
     const char* pString = TempString.c_str();
     while (*pString) {
@@ -83,7 +85,7 @@ void PlayerProfile::RestoreControlDefaults(void)
 
 void PlayerProfile::SetProfileName(const char* pProfileName)
 {
-    strcpy(m_pProfileName, pProfileName);
+    strcpy_s(m_pProfileName, sizeof(m_pProfileName), pProfileName);
 }
 
 bool PlayerProfile::GetLoreAcquired(uint32_t Vault, int Index)

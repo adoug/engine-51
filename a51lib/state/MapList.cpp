@@ -326,7 +326,7 @@ void map_list::Parse(const char* pMapFile, map_flags Flags, int Location)
         }
         const char* strTok = Stream.String();
         char upperTok[32];
-        strncpy(upperTok, strTok, 31);
+        strncpy_s(upperTok, sizeof(upperTok), strTok, 31);
         upperTok[31] = 0;
         uppercase(upperTok);
         if (strcmp(upperTok, "[VERSION]") == 0) {

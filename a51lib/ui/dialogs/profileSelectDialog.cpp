@@ -196,7 +196,8 @@ namespace ui
             m_pInfoModifiedDate->setLabel(L"---");
         } else {
             auto& profileItem = stateMachine->getProfileList()[SelIndex];
-            auto* cd = localtime(&profileItem.CreationDate);
+            struct tm cd_struct;
+            auto* cd = localtime_s(&cd_struct, &profileItem.CreationDate) == 0 ? &cd_struct : nullptr;
             char  buf[64];
             snprintf(buf, 63, "IDS_MONTH%d", cd->tm_mon + 1);
             std::wstring Month = manager->lookupString("ui", buf);
@@ -205,7 +206,8 @@ namespace ui
             swprintf(buf2, 127, L"%02i:%02i:%02i %ls %02i", cd->tm_hour, cd->tm_min, cd->tm_sec, Month.c_str(), cd->tm_mday);
             m_pInfoCreationDate->setLabel(buf2);
 
-            cd = localtime(&profileItem.ModifiedDate);
+            struct tm md_struct;
+            cd = localtime_s(&md_struct, &profileItem.ModifiedDate) == 0 ? &md_struct : nullptr;
 
             snprintf(buf, 63, "IDS_MONTH%d", cd->tm_mon + 1);
             Month = manager->lookupString("ui", buf);
